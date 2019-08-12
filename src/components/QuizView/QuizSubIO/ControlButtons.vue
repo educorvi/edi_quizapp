@@ -1,16 +1,15 @@
 <template>
     <div class="container-fluid">
 
-
-        <!--        @TODO 09.08.2019 Bei der letzten Frage Abschließen Knopf und kein Nächste Frage-->
-
         <!--        Für Selbsttests-->
         <div v-if="selbsttest">
             <div class="row ctlbuttons">
-
                 <b-button @click="$emit('vorherige')" class="col" v-if="aktuelleFrage!==0">Vorherige Frage</b-button>
                 <b-button @click="$emit('pruefe')" class="col" v-show="!geprueft">Prüfen</b-button>
-                <b-button @click="$emit('naechste')" class="col" v-show="geprueft">Nächste Frage</b-button>
+                <b-button @click="$emit('naechste')" class="col" v-if="aktuelleFrage!==(anzahlFragen-1)"
+                          v-show="geprueft">Nächste Frage
+                </b-button>
+                <b-button @click="$emit('fertig')" class="col" v-else v-show="geprueft">Abschließen</b-button>
             </div>
 
             <div class="row ctlbuttons">
@@ -24,7 +23,9 @@
         <!--        Für Benotete Tests-->
         <div class="row ctlbuttons" v-else>
             <b-button @click="$emit('vorherige')" class="col" v-if="aktuelleFrage!==0">Vorherige Frage</b-button>
-            <b-button @click="pruefeUndNaechste" class="col">Nächste Frage</b-button>
+            <b-button @click="pruefeUndNaechste" class="col" v-if="aktuelleFrage!==(anzahlFragen-1)">Nächste Frage
+            </b-button>
+            <b-button @click="$emit('fertig')" class="col" v-else v-show="geprueft">Abschließen</b-button>
             <b-button class="col btn-warning" v-b-modal.modal-hinweis>Hinweis</b-button>
         </div>
 

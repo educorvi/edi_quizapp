@@ -22,7 +22,7 @@
                             :quizfrage="quiz.quizfrage" :selbsttest="quiz.selbsttest" :solution="loesung.solution"
                             @newsel="aktualisiereSelected"
                             @timeover="pruefe"
-                            id="multibleChoice" ref="multibleChoice" v-show="started"/>
+                            id="multibleChoice" ref="multibleChoice" v-show="started && !fertig"/>
 
 
             <ControlButtons
@@ -31,13 +31,19 @@
                     :selbsttest="quiz.selbsttest" @naechste="naechsteFrage"
                     @pruefe="pruefe"
                     @vorherige="vorherigeFrage"
-                    v-if="started"/>
+                    @fertig="fertig=true"
+                    v-if="started && !fertig"/>
 
 
             <!--        Startbereich-->
             <div v-if="!started">
                 <h4>{{quiz.title}}</h4>
                 <b-button @click="naechsteFrage">Start</b-button>
+            </div>
+
+            <!--            Endbereich-->
+            <div v-if="fertig">
+                <h3>Fertig</h3>
             </div>
         </div>
 
@@ -145,6 +151,9 @@
                 } else {
                     this.started = true;
                 }
+                if (this.loesung.selected[this.aktuelleFrage] === undefined) {
+                    this.loesung.selected[this.aktuelleFrage] = [];
+                }
                 this.getFrage(Object.entries(this.quiz.quizfragen[this.aktuelleFrage])[0][1]);
             },
             vorherigeFrage() {
@@ -173,10 +182,8 @@
             setRichtigUndFalsch() {
                 this.loesung.history.richtig = 0;
                 this.loesung.history.falsch = 0;
-                console.log("Starte aktualisierung");
                 for (let i = 0; i < this.loesung.history.proFrage.length; i++) {
                     let loe = this.loesung.history.proFrage[i];
-                    console.log(loe);
                     if (loe) {
                         this.loesung.history.richtig++
                     } else {
