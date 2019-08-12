@@ -1,0 +1,64 @@
+{
+  "@components": {
+    "actions": {
+      "@id": "http://192.168.86.48:8080/quiz/Members/julian--pollinger/testordner/@actions"
+    },
+    "breadcrumbs": {
+      "@id": "http://192.168.86.48:8080/quiz/Members/julian--pollinger/testordner/@breadcrumbs"
+    },
+    "navigation": {
+      "@id": "http://192.168.86.48:8080/quiz/Members/julian--pollinger/testordner/@navigation"
+    },
+    "types": {
+      "@id": "http://192.168.86.48:8080/quiz/Members/julian--pollinger/testordner/@types"
+    },
+    "workflow": {
+      "@id": "http://192.168.86.48:8080/quiz/Members/julian--pollinger/testordner/@workflow"
+    }
+  },
+  "@id": "http://192.168.86.48:8080/quiz/Members/julian--pollinger/testordner/",
+  "@type": "Kursordner",
+  "UID": "2375b3c30be244d58764c639d2688ace",
+  "allow_discussion": false,
+  "created": "2019-08-05T13:50:16+00:00",
+  "description": "Meine Tests mit edi.quiz",
+  "id": "testordner",
+  "image": null,
+  "is_folderish": true,
+  "items": [
+    {
+      "@id": "http://192.168.86.48:8080/quiz/Members/julian--pollinger/testordner/mein-test",
+      "@type": "Aufgabe",
+      "description": "",
+      "review_state": "private",
+      "title": "Mein Test"
+    },
+    {
+      "@id": "test/test.json",
+      "@type": "Aufgabe",
+      "description": "",
+      "review_state": "private",
+      "title": "Frage 1"
+    },
+    {
+      "@id": "test/test2.json",
+      "@type": "Aufgabe",
+      "description": "",
+      "review_state": "private",
+      "title": "Frage 2"
+    }
+  ],
+  "items_total": 1,
+  "layout": "kursordnerview",
+  "modified": "2019-08-05T13:52:17+00:00",
+  "parent": {
+    "@id": "http://192.168.86.48:8080/quiz/Members/julian--pollinger",
+    "@type": "Folder",
+    "description": "",
+    "review_state": "private",
+    "title": "Julian Pollinger"
+  },
+  "review_state": "private",
+  "title": "Testordner",
+  "version": "current"
+}

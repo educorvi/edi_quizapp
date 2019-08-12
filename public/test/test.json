@@ -1,22 +1,22 @@
 {
   "@components": {
     "actions": {
-      "@id": "http://localhost:8080/quiz/Members/julian--pollinger/testordner/mein-test/@actions"
+      "@id": "http://192.168.86.48:8080/quiz/Members/julian--pollinger/testordner/mein-test/@actions"
     },
     "breadcrumbs": {
-      "@id": "http://localhost:8080/quiz/Members/julian--pollinger/testordner/mein-test/@breadcrumbs"
+      "@id": "http://192.168.86.48:8080/quiz/Members/julian--pollinger/testordner/mein-test/@breadcrumbs"
     },
     "navigation": {
-      "@id": "http://localhost:8080/quiz/Members/julian--pollinger/testordner/mein-test/@navigation"
+      "@id": "http://192.168.86.48:8080/quiz/Members/julian--pollinger/testordner/mein-test/@navigation"
     },
     "types": {
-      "@id": "http://localhost:8080/quiz/Members/julian--pollinger/testordner/mein-test/@types"
+      "@id": "http://192.168.86.48:8080/quiz/Members/julian--pollinger/testordner/mein-test/@types"
     },
     "workflow": {
-      "@id": "http://localhost:8080/quiz/Members/julian--pollinger/testordner/mein-test/@workflow"
+      "@id": "http://192.168.86.48:8080/quiz/Members/julian--pollinger/testordner/mein-test/@workflow"
     }
   },
-  "@id": "http://localhost:8080/quiz/Members/julian--pollinger/testordner/mein-test",
+  "@id": "http://192.168.86.48:8080/quiz/Members/julian--pollinger/testordner/mein-test",
   "@type": "Aufgabe",
   "UID": "9c21720958334903974a01db61fd2416",
   "allow_discussion": false,
@@ -42,20 +42,77 @@
     "token": "selbsttest"
   },
   "aufgabe": "Wie merke ich mir Kennwörter?",
-  "bedenkzeit": 0,
+  "bedenkzeit": 20,
   "beispiel": false,
   "bonus": null,
   "created": "2019-08-05T13:52:17+00:00",
-  "datei": null,
-  "erklaerung": null,
-  "hinweis": null,
+  "datei": {
+    "content-type": "image/jpeg",
+    "download": "http://192.168.86.48:8080/quiz/Members/julian--pollinger/testordner/mein-test/@@download/datei",
+    "filename": "20190703_214233.jpg",
+    "size": 121056
+  },
+  "erklaerung": {
+    "content-type": "text/html",
+    "data": "<h5>Rachmaninoff - Piano Concerto No. 2 (Hélène Grimaud)</h5><br/><p>Sergei Rachmaninoff - Piano Concerto No. 2 in C minor, Op. 18\nPiano: Hélène Grimaud\nConductor: Claudio Abbado\nLucerne Festival Orchestra\n\n0:47 - Moderato\n12:15 - Adagio sostenuto\n23:41 - Allegro scherzando</p>",
+    "encoding": "utf-8"
+  },
+  "hinweis": {
+    "content-type": "text/html",
+    "data": "<h1>Lorem ipsum dolor sit amet consectetuer adipiscing \nelit</h1>\n<p>Lorem ipsum dolor sit amet, consectetuer adipiscing \nelit. Aenean commodo ligula eget dolor. Aenean massa \n<strong>strong</strong>. Cum sociis natoque penatibus \net magnis dis parturient montes, nascetur ridiculus \nmus. Donec quam felis, ultricies nec, pellentesque \neu, pretium quis, sem. Nulla consequat massa quis \nenim. Donec pede justo, fringilla vel, aliquet nec, \nvulputate eget, arcu. In enim justo, rhoncus ut, \nimperdiet a, venenatis vitae, justo. Nullam dictum \nfelis eu pede <a class=\"external ext\" href=\"#\">link</a> \nmollis pretium. Integer tincidunt. Cras dapibus. \nVivamus elementum semper nisi. Aenean vulputate \neleifend tellus. Aenean leo ligula, porttitor eu, \nconsequat vitae, eleifend ac, enim. Aliquam lorem ante, \ndapibus in, viverra quis, feugiat a, tellus. Phasellus \nviverra nulla ut metus varius laoreet. Quisque rutrum. \nAenean imperdiet. Etiam ultricies nisi vel augue. \nCurabitur ullamcorper ultricies nisi.</p>\n<h1>Lorem ipsum dolor sit amet consectetuer adipiscing \nelit</h1>\n<h2>Aenean commodo ligula eget dolor aenean massa</h2>\n<p>Lorem ipsum dolor sit amet, consectetuer adipiscing \nelit. Aenean commodo ligula eget dolor. Aenean massa. \nCum sociis natoque penatibus et magnis dis parturient \nmontes, nascetur ridiculus mus. Donec quam felis, \nultricies nec, pellentesque eu, pretium quis, sem.</p>",
+    "encoding": "utf-8"
+  },
   "id": "mein-test",
-  "image": null,
+  "image": {
+    "content-type": "image/png",
+    "download": "http://192.168.86.48:8080/quiz/Members/julian--pollinger/testordner/mein-test/@@images/45afd01e-d7e9-460e-93c4-ba861d13cbf9.png",
+    "filename": "jp-studios.png",
+    "height": 576,
+    "scales": {
+      "icon": {
+        "download": "http://192.168.86.48:8080/quiz/Members/julian--pollinger/testordner/mein-test/@@images/14c9e347-80fd-4983-ba7d-85b0b062e486.png",
+        "height": 18,
+        "width": 32
+      },
+      "large": {
+        "download": "http://192.168.86.48:8080/quiz/Members/julian--pollinger/testordner/mein-test/@@images/0e57a94d-82fd-4d09-95fe-bc182b229a9d.png",
+        "height": 432,
+        "width": 768
+      },
+      "listing": {
+        "download": "http://192.168.86.48:8080/quiz/Members/julian--pollinger/testordner/mein-test/@@images/d60f4ed6-f4d7-48f5-a4c1-dd8d06059fa1.png",
+        "height": 9,
+        "width": 16
+      },
+      "mini": {
+        "download": "http://192.168.86.48:8080/quiz/Members/julian--pollinger/testordner/mein-test/@@images/faaeb689-1b9a-403c-82dd-b4c7b08c53df.png",
+        "height": 112,
+        "width": 200
+      },
+      "preview": {
+        "download": "http://192.168.86.48:8080/quiz/Members/julian--pollinger/testordner/mein-test/@@images/c2f85e28-967d-4921-a90a-61950502d6d7.png",
+        "height": 225,
+        "width": 400
+      },
+      "thumb": {
+        "download": "http://192.168.86.48:8080/quiz/Members/julian--pollinger/testordner/mein-test/@@images/d83288db-7024-4d9b-9a6e-a0031b84a1bc.png",
+        "height": 72,
+        "width": 128
+      },
+      "tile": {
+        "download": "http://192.168.86.48:8080/quiz/Members/julian--pollinger/testordner/mein-test/@@images/0fb06844-07ee-4073-95f4-dffb31876f03.png",
+        "height": 36,
+        "width": 64
+      }
+    },
+    "size": 64637,
+    "width": 1024
+  },
   "is_folderish": false,
   "layout": "aufgabeview",
-  "modified": "2019-08-05T13:52:17+00:00",
+  "modified": "2019-08-06T12:12:38+00:00",
   "parent": {
-    "@id": "http://localhost:8080/quiz/Members/julian--pollinger/testordner",
+    "@id": "http://192.168.86.48:8080/quiz/Members/julian--pollinger/testordner",
     "@type": "Kursordner",
     "description": "Meine Tests mit edi.quiz",
     "review_state": "private",
@@ -64,8 +121,8 @@
   "punkte": 0,
   "review_state": "private",
   "solutionimage": null,
-  "solutionvideo": null,
-  "title": "Mein Test",
+  "solutionvideo": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/_asI5WvGVQs\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>",
+  "title": "Frage 1",
   "version": "current",
-  "video": null
+  "video": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/wNo7qoLRtkQ\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>"
 }

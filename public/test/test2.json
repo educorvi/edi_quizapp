@@ -1,38 +1,43 @@
 {
   "@components": {
     "actions": {
-      "@id": "http://localhost:8080/quiz/Members/julian--pollinger/testordner/mein-test/@actions"
+      "@id": "http://192.168.86.48:8080/quiz/Members/julian--pollinger/testordner/mein-test/@actions"
     },
     "breadcrumbs": {
-      "@id": "http://localhost:8080/quiz/Members/julian--pollinger/testordner/mein-test/@breadcrumbs"
+      "@id": "http://192.168.86.48:8080/quiz/Members/julian--pollinger/testordner/mein-test/@breadcrumbs"
     },
     "navigation": {
-      "@id": "http://localhost:8080/quiz/Members/julian--pollinger/testordner/mein-test/@navigation"
+      "@id": "http://192.168.86.48:8080/quiz/Members/julian--pollinger/testordner/mein-test/@navigation"
     },
     "types": {
-      "@id": "http://localhost:8080/quiz/Members/julian--pollinger/testordner/mein-test/@types"
+      "@id": "http://192.168.86.48:8080/quiz/Members/julian--pollinger/testordner/mein-test/@types"
     },
     "workflow": {
-      "@id": "http://localhost:8080/quiz/Members/julian--pollinger/testordner/mein-test/@workflow"
+      "@id": "http://192.168.86.48:8080/quiz/Members/julian--pollinger/testordner/mein-test/@workflow"
     }
   },
-  "@id": "http://localhost:8080/quiz/Members/julian--pollinger/testordner/mein-test",
+  "@id": "http://192.168.86.48:8080/quiz/Members/julian--pollinger/testordner/mein-test",
   "@type": "Aufgabe",
   "UID": "9c21720958334903974a01db61fd2416",
   "allow_discussion": false,
   "antworten": [
     {
-      "antwort": "auf den Tisch schreiben",
+      "antwort": "Alex",
       "bewertung": "falsch",
       "image": null
     },
     {
-      "antwort": "einfach mal was merken",
+      "antwort": "Luca",
       "bewertung": "richtig",
       "image": null
     },
     {
-      "antwort": "Lars fragen",
+      "antwort": "Alfred",
+      "bewertung": "richtig",
+      "image": null
+    },
+    {
+      "antwort": "Fabian",
       "bewertung": "richtig",
       "image": null
     }
@@ -41,17 +46,12 @@
     "title": "Selbsttest",
     "token": "selbsttest"
   },
-  "aufgabe": "Wie merke ich mir Kennwörter?",
+  "aufgabe": "Wie heiße ich mit zweitem Vornamen?",
   "bedenkzeit": 0,
   "beispiel": false,
   "bonus": null,
   "created": "2019-08-05T13:52:17+00:00",
-  "datei": {
-    "content-type": "image/jpeg",
-    "download": "http://localhost:8080/quiz/Members/julian--pollinger/testordner/mein-test/@@download/datei",
-    "filename": "20190703_214233.jpg",
-    "size": 121056
-  },
+  "datei": null,
   "erklaerung": {
     "content-type": "text/html",
     "data": "<p>Das ist die Erklärung</p>",
@@ -59,60 +59,16 @@
   },
   "hinweis": {
     "content-type": "text/html",
-    "data": "<p>Hinweis zur Lösung</p>",
+    "data": "<h1>Lorem ipsum dolor sit amet consectetuer adipiscing \nelit</h1>\n<p>Lorem ipsum dolor sit amet, consectetuer adipiscing \nelit. Aenean commodo ligula eget dolor. Aenean massa \n<strong>strong</strong>. Cum sociis natoque penatibus \net magnis dis parturient montes, nascetur ridiculus \nmus. Donec quam felis, ultricies nec, pellentesque \neu, pretium quis, sem. Nulla consequat massa quis \nenim. Donec pede justo, fringilla vel, aliquet nec, \nvulputate eget, arcu. In enim justo, rhoncus ut, \nimperdiet a, venenatis vitae, justo. Nullam dictum \nfelis eu pede <a class=\"external ext\" href=\"#\">link</a> \nmollis pretium. Integer tincidunt. Cras dapibus. \nVivamus elementum semper nisi. Aenean vulputate \neleifend tellus. Aenean leo ligula, porttitor eu, \nconsequat vitae, eleifend ac, enim. Aliquam lorem ante, \ndapibus in, viverra quis, feugiat a, tellus. Phasellus \nviverra nulla ut metus varius laoreet. Quisque rutrum. \nAenean imperdiet. Etiam ultricies nisi vel augue. \nCurabitur ullamcorper ultricies nisi.</p>\n<h1>Lorem ipsum dolor sit amet consectetuer adipiscing \nelit</h1>\n<h2>Aenean commodo ligula eget dolor aenean massa</h2>\n<p>Lorem ipsum dolor sit amet, consectetuer adipiscing \nelit. Aenean commodo ligula eget dolor. Aenean massa. \nCum sociis natoque penatibus et magnis dis parturient \nmontes, nascetur ridiculus mus. Donec quam felis, \nultricies nec, pellentesque eu, pretium quis, sem.</p>",
     "encoding": "utf-8"
   },
   "id": "mein-test",
-  "image": {
-    "content-type": "image/png",
-    "download": "http://localhost:8080/quiz/Members/julian--pollinger/testordner/mein-test/@@images/09d4c272-e385-4937-99d4-9a0d195466dd.png",
-    "filename": "jp-studios.png",
-    "height": 576,
-    "scales": {
-      "icon": {
-        "download": "http://localhost:8080/quiz/Members/julian--pollinger/testordner/mein-test/@@images/14c9e347-80fd-4983-ba7d-85b0b062e486.png",
-        "height": 18,
-        "width": 32
-      },
-      "large": {
-        "download": "http://localhost:8080/quiz/Members/julian--pollinger/testordner/mein-test/@@images/0e57a94d-82fd-4d09-95fe-bc182b229a9d.png",
-        "height": 432,
-        "width": 768
-      },
-      "listing": {
-        "download": "http://localhost:8080/quiz/Members/julian--pollinger/testordner/mein-test/@@images/d60f4ed6-f4d7-48f5-a4c1-dd8d06059fa1.png",
-        "height": 9,
-        "width": 16
-      },
-      "mini": {
-        "download": "http://localhost:8080/quiz/Members/julian--pollinger/testordner/mein-test/@@images/faaeb689-1b9a-403c-82dd-b4c7b08c53df.png",
-        "height": 112,
-        "width": 200
-      },
-      "preview": {
-        "download": "http://localhost:8080/quiz/Members/julian--pollinger/testordner/mein-test/@@images/c2f85e28-967d-4921-a90a-61950502d6d7.png",
-        "height": 225,
-        "width": 400
-      },
-      "thumb": {
-        "download": "http://localhost:8080/quiz/Members/julian--pollinger/testordner/mein-test/@@images/d83288db-7024-4d9b-9a6e-a0031b84a1bc.png",
-        "height": 72,
-        "width": 128
-      },
-      "tile": {
-        "download": "http://localhost:8080/quiz/Members/julian--pollinger/testordner/mein-test/@@images/0fb06844-07ee-4073-95f4-dffb31876f03.png",
-        "height": 36,
-        "width": 64
-      }
-    },
-    "size": 64637,
-    "width": 1024
-  },
+  "image": null,
   "is_folderish": false,
   "layout": "aufgabeview",
   "modified": "2019-08-06T12:12:38+00:00",
   "parent": {
-    "@id": "http://localhost:8080/quiz/Members/julian--pollinger/testordner",
+    "@id": "http://192.168.86.48:8080/quiz/Members/julian--pollinger/testordner",
     "@type": "Kursordner",
     "description": "Meine Tests mit edi.quiz",
     "review_state": "private",
@@ -120,9 +76,53 @@
   },
   "punkte": 0,
   "review_state": "private",
-  "solutionimage": null,
+  "solutionimage": {
+    "content-type": "image/jpeg",
+    "download": "http://192.168.86.48:8080/quiz/Members/julian--pollinger/testordner/mein-test/@@images/0c49384c-728f-4635-bce3-1a32cff6b451.jpeg",
+    "filename": "Wolfgang-Borchert-Gymnasium-Event-1178-01.jpeg",
+    "height": 3262,
+    "scales": {
+      "icon": {
+        "download": "http://192.168.86.48:8080/quiz/Members/julian--pollinger/testordner/mein-test/@@images/5af6842f-02e7-44c5-921d-348913420721.jpeg",
+        "height": 21,
+        "width": 32
+      },
+      "large": {
+        "download": "http://192.168.86.48:8080/quiz/Members/julian--pollinger/testordner/mein-test/@@images/66509664-6f52-4e58-ac39-f1f5f87acdd8.jpeg",
+        "height": 510,
+        "width": 768
+      },
+      "listing": {
+        "download": "http://192.168.86.48:8080/quiz/Members/julian--pollinger/testordner/mein-test/@@images/faf6629f-b39c-42dc-9465-a46e9209a915.jpeg",
+        "height": 10,
+        "width": 16
+      },
+      "mini": {
+        "download": "http://192.168.86.48:8080/quiz/Members/julian--pollinger/testordner/mein-test/@@images/22c2ed65-6245-4cbd-a051-d4dc59972c30.jpeg",
+        "height": 133,
+        "width": 200
+      },
+      "preview": {
+        "download": "http://192.168.86.48:8080/quiz/Members/julian--pollinger/testordner/mein-test/@@images/a5a31023-d2ea-4c64-86f7-61555a377f11.jpeg",
+        "height": 266,
+        "width": 400
+      },
+      "thumb": {
+        "download": "http://192.168.86.48:8080/quiz/Members/julian--pollinger/testordner/mein-test/@@images/ab9d0bb8-f724-4d0b-98db-9ac71259fbb5.jpeg",
+        "height": 85,
+        "width": 128
+      },
+      "tile": {
+        "download": "http://192.168.86.48:8080/quiz/Members/julian--pollinger/testordner/mein-test/@@images/0d964515-b236-446f-bc17-a5e72f54a808.jpeg",
+        "height": 42,
+        "width": 64
+      }
+    },
+    "size": 959661,
+    "width": 4903
+  },
   "solutionvideo": null,
-  "title": "Mein Test",
+  "title": "Frage 2",
   "version": "current",
   "video": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/wNo7qoLRtkQ\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>"
 }

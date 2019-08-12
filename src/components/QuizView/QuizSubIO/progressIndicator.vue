@@ -1,19 +1,23 @@
 <template>
-    <!--    <b-progress class="mt-2" :max="anzahlFragen">-->
-    <!--        <b-progress-bar :value="progress.richtig" variant="success"></b-progress-bar>-->
-    <!--        <b-progress-bar :value="progress.falsch" variant="danger"></b-progress-bar>-->
-    <!--    </b-progress>-->
+    <div>
+        <b-progress :max="anzahlFragen" class="mt-2" height="8px">
+            <!--        <b-progress-bar :key="index" :value="1" :variant="getVariant(frage)"-->
+            <!--                        v-for="(frage, index) in progress.proFrage"></b-progress-bar>-->
+            <b-progress-bar :value="progress.proFrage.length"></b-progress-bar>
+        </b-progress>
+        <b-progress :max="progress.richtig+progress.falsch" height="4px" v-if="selbsttest">
+            <b-progress-bar :value="progress.richtig" variant="success"></b-progress-bar>
+            <b-progress-bar :value="progress.falsch" variant="danger"></b-progress-bar>
+        </b-progress>
+    </div>
 
-    <b-progress :max="anzahlFragen" class="mt-2">
-        <b-progress-bar :key="index" :value="1" :variant="getVariant(frage)"
-                        v-for="(frage, index) in progress.proFrage"></b-progress-bar>
-    </b-progress>
+
 </template>
 
 <script>
     export default {
         name: "progressIndicator",
-        props: ["progress", "anzahlFragen"],
+        props: ["progress", "anzahlFragen", "selbsttest"],
         methods: {
             getVariant(richt) {
                 if (richt) {

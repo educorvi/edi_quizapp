@@ -1,38 +1,62 @@
 <template>
-    <div class="container-fluid">
+    <div>
 
+        <!--        <Countdown :duration="180" @timeover="$emit('timeover')"></Countdown>-->
         <Frage :quizfrage="quizfrage"/>
 
-        <b-form-group>
-            <b-checkbox-group v-model="selected">
-                <Antwort v-for="(antwortComponent, index) in quizfrage.antworten" v-bind:key="index"
-                         v-bind:index="index" v-bind:antwort="antwortComponent"></Antwort>
-            </b-checkbox-group>
-        </b-form-group>
+
+        <b-card-group deck>
+
+
+            <Antwort :antwort="antwortComponent"
+                     :geprueft="geprueft"
+                     :index="index" :key="index"
+                     :selbsttest="selbsttest" :selected="selected" :solution="solution" @cl="check"
+                     v-for="(antwortComponent, index) in quizfrage.antworten"></Antwort>
+
+        </b-card-group>
+        <!--            <b-form-valid-feedback :state="solution.result">Richtig</b-form-valid-feedback>-->
+        <!--            <b-form-invalid-feedback :state="solution.result">Falsch</b-form-invalid-feedback>-->
     </div>
 </template>
 
 <script>
-    import Antwort from "@/components/QuizView/Quizfrage/Children/Antwort";
-    import Frage from "@/components/QuizView/Quizfrage/Children/Frage";
+    import Antwort from "@/components/QuizView/multibleChoice/Children/Antwort";
+    import Frage from "@/components/QuizView/multibleChoice/Children/Frage";
 
     export default {
         data() {
             return {
-                selected: []
+                selected: [],
             }
         },
-        name: "Quizfrage",
-        props: ["quizfrage"],
+        name: "multibleChoice",
+        props: ["quizfrage", "geprueft", "solution", "selbsttest"],
         components: {
             Frage,
             Antwort
+        },
+        methods: {
+            whipe() {
+                this.selected = [];
+            },
+            check(index) {
+                if (!this.geprueft) {
+                    if (this.selected.includes(index)) {
+                        this.selected.splice(this.selected.indexOf(index), 1);
+                    } else {
+                        this.selected.push(index);
+                    }
+                    this.$emit('newsel', this.selected)
+                }
+            }
         }
+
     }
 </script>
 
 <style>
-    .card {
-        margin: 8px;
-    }
+    /*.card {*/
+    /*    margin: 5px;*/
+    /*}*/
 </style>
