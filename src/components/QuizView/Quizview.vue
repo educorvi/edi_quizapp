@@ -11,15 +11,15 @@
                 />
             </div>
 
-            <Countdown
-                    @timeover="pruefe" class="col-2" id="countdown" ref="Countdown"
-                    v-show="started"></Countdown>
         </div>
 
 
         <div id="quizbody" v-show="!loading">
             <multibleChoice :geprueft="geprueft"
-                            :quizfrage="quiz.quizfrage" :selbsttest="quiz.selbsttest" :solution="loesung.solution"
+                            :quizfrage="quiz.quizfrage"
+                            :selbsttest="quiz.selbsttest"
+                            :solution="loesung.solution"
+                            :started="started"
                             @newsel="aktualisiereSelected"
                             @timeover="pruefe"
                             id="multibleChoice" ref="multibleChoice" v-show="started && !fertig"/>
@@ -61,7 +61,6 @@
     import ControlButtons from "@/components/QuizView/QuizSubIO/ControlButtons";
     import axios from "axios"
     import ProgressIndicator from "@/components/QuizView/QuizSubIO/progressIndicator";
-    import Countdown from "@/components/QuizView/QuizSubIO/CountdownTimer";
 
     export default {
         data() {
@@ -115,7 +114,6 @@
         },
         name: "Quizview",
         components: {
-            "Countdown": Countdown,
             ProgressIndicator,
             "multibleChoice": multibleChoice,
             ControlButtons
@@ -137,7 +135,7 @@
             contLoadingFrage(res) {
                 this.quiz.quizfrage = res.data;
                 this.geprueft = false;
-                this.$refs.Countdown.startCountdown(this.quiz.quizfrage["bedenkzeit"]);
+                this.$refs.multibleChoice.$refs.Countdown.startCountdown(this.quiz.quizfrage["bedenkzeit"]);
                 this.$refs.multibleChoice.whipe();
                 this.loading = false;
             },
@@ -175,7 +173,7 @@
                     this.loesung.history.proFrage[this.aktuelleFrage] = this.loesung.solution.result;
                     this.geprueft = true;
                     this.setRichtigUndFalsch();
-                    this.$refs.Countdown.running = false;
+                    this.$refs.multibleChoice.$refs.Countdown.running = false;
                 }).catch(err => this.fehler(err));
 
             },
