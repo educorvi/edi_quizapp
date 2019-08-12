@@ -1,0 +1,71 @@
+{
+  "@components": {
+    "actions": {
+      "@id": "http://localhost:8080/quiz/Members/julian--pollinger/testordner/mein-test/@actions"
+    },
+    "breadcrumbs": {
+      "@id": "http://localhost:8080/quiz/Members/julian--pollinger/testordner/mein-test/@breadcrumbs"
+    },
+    "navigation": {
+      "@id": "http://localhost:8080/quiz/Members/julian--pollinger/testordner/mein-test/@navigation"
+    },
+    "types": {
+      "@id": "http://localhost:8080/quiz/Members/julian--pollinger/testordner/mein-test/@types"
+    },
+    "workflow": {
+      "@id": "http://localhost:8080/quiz/Members/julian--pollinger/testordner/mein-test/@workflow"
+    }
+  },
+  "@id": "http://localhost:8080/quiz/Members/julian--pollinger/testordner/mein-test",
+  "@type": "Aufgabe",
+  "UID": "9c21720958334903974a01db61fd2416",
+  "allow_discussion": false,
+  "antworten": [
+    {
+      "antwort": "auf den Tisch schreiben",
+      "bewertung": "falsch",
+      "image": null
+    },
+    {
+      "antwort": "einfach mal was merken",
+      "bewertung": "richtig",
+      "image": null
+    },
+    {
+      "antwort": "Lars fragen",
+      "bewertung": "richtig",
+      "image": null
+    }
+  ],
+  "art": {
+    "title": "Selbsttest",
+    "token": "selbsttest"
+  },
+  "aufgabe": "Wie merke ich mir Kennwörter?",
+  "bedenkzeit": 0,
+  "beispiel": false,
+  "bonus": null,
+  "created": "2019-08-05T13:52:17+00:00",
+  "datei": null,
+  "erklaerung": null,
+  "hinweis": null,
+  "id": "mein-test",
+  "image": null,
+  "is_folderish": false,
+  "layout": "aufgabeview",
+  "modified": "2019-08-05T13:52:17+00:00",
+  "parent": {
+    "@id": "http://localhost:8080/quiz/Members/julian--pollinger/testordner",
+    "@type": "Kursordner",
+    "description": "Meine Tests mit edi.quiz",
+    "review_state": "private",
+    "title": "Testordner"
+  },
+  "punkte": 0,
+  "review_state": "private",
+  "solutionimage": null,
+  "solutionvideo": null,
+  "title": "Mein Test",
+  "version": "current",
+  "video": null
+}
