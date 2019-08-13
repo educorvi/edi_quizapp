@@ -4,6 +4,11 @@
         <!--        <Countdown :duration="180" @timeover="$emit('timeover')"></Countdown>-->
         <Frage :quizfrage="quizfrage"/>
 
+        <Countdown
+                @timeover="$emit('timeover')" class="countdown" id="countdown"
+                ref="Countdown"
+                v-show="started"></Countdown>
+
 
         <b-card-group deck>
 
@@ -23,6 +28,7 @@
 <script>
     import Antwort from "@/components/QuizView/multibleChoice/Children/Antwort";
     import Frage from "@/components/QuizView/multibleChoice/Children/Frage";
+    import Countdown from "@/components/QuizView/QuizSubIO/CountdownTimer";
 
     export default {
         data() {
@@ -31,8 +37,9 @@
             }
         },
         name: "multibleChoice",
-        props: ["quizfrage", "geprueft", "solution", "selbsttest"],
+        props: ["quizfrage", "geprueft", "solution", "selbsttest", "started"],
         components: {
+            Countdown,
             Frage,
             Antwort
         },
@@ -59,4 +66,8 @@
     /*.card {*/
     /*    margin: 5px;*/
     /*}*/
+
+    .countdown {
+        margin-bottom: 8px;
+    }
 </style>

@@ -1,25 +1,23 @@
 <template>
     <div class="container-fluid">
         <div class="row" id="head">
-            <div class="col-10">
 
                 <progressIndicator
                         :anzahlFragen="quiz.quizfragen.length"
                         :progress="loesung.history"
                         :selbsttest="quiz.selbsttest"
-                        class="progressIndicator"
+                        class="progressIndicator col-12"
                 />
-            </div>
 
-            <Countdown
-                    @timeover="pruefe" class="col-2" id="countdown" ref="Countdown"
-                    v-show="started"></Countdown>
         </div>
 
 
         <div id="quizbody" v-show="!loading">
             <multibleChoice :geprueft="geprueft"
-                            :quizfrage="quiz.quizfrage" :selbsttest="quiz.selbsttest" :solution="loesung.solution"
+                            :quizfrage="quiz.quizfrage"
+                            :selbsttest="quiz.selbsttest"
+                            :solution="loesung.solution"
+                            :started="started"
                             @newsel="aktualisiereSelected"
                             @timeover="pruefe"
                             id="multibleChoice" ref="multibleChoice" v-show="started && !fertig"/>
@@ -61,7 +59,6 @@
     import ControlButtons from "@/components/QuizView/QuizSubIO/ControlButtons";
     import axios from "axios"
     import ProgressIndicator from "@/components/QuizView/QuizSubIO/progressIndicator";
-    import Countdown from "@/components/QuizView/QuizSubIO/CountdownTimer";
 
     export default {
         data() {
@@ -115,7 +112,6 @@
         },
         name: "Quizview",
         components: {
-            "Countdown": Countdown,
             ProgressIndicator,
             "multibleChoice": multibleChoice,
             ControlButtons
@@ -129,15 +125,15 @@
                     this.quiz.quizfragen = res.data.items;
                     this.quiz.title = res.data.title;
                     this.loading = false;
-                });
+                }).catch(err => this.fehler(err));
             },
             getFrage(url) {
-                axios.get(url, this.local.config).then(this.contLoadingFrage).catch(err => console.log(err));
+                axios.get(url, this.local.config).then(this.contLoadingFrage).catch(err => this.fehler(err));
             },
             contLoadingFrage(res) {
                 this.quiz.quizfrage = res.data;
                 this.geprueft = false;
-                this.$refs.Countdown.startCountdown(this.quiz.quizfrage["bedenkzeit"]);
+                this.$refs.multibleChoice.$refs.Countdown.startCountdown(this.quiz.quizfrage["bedenkzeit"]);
                 this.$refs.multibleChoice.whipe();
                 this.loading = false;
             },
@@ -175,7 +171,7 @@
                     this.loesung.history.proFrage[this.aktuelleFrage] = this.loesung.solution.result;
                     this.geprueft = true;
                     this.setRichtigUndFalsch();
-                    this.$refs.Countdown.running = false;
+                    this.$refs.multibleChoice.$refs.Countdown.running = false;
                 }).catch(err => this.fehler(err));
 
             },
