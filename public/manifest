@@ -12,11 +12,6 @@
       "src": "logo.png",
       "sizes": "600x600",
       "type": "image/png"
-    },
-    {
-      "src": "https://placeholder.com/wp-content/uploads/2018/10/placeholder.com-logo1.png",
-      "sizes": "885x183",
-      "type": "image/png"
     }
   ]
 }
