@@ -42,7 +42,7 @@
         <b-modal centered id="modal-erklaerung" ok-title="Schließen" scrollable title="Erklärung">
             <div class="embed-responsive embed-responsive-16by9" style="margin-bottom: 5px"
                  v-if="frage.solutionvideo">
-                <span v-html="aktuelleFrage.solutionvideo"></span>
+                <span v-html="frage.solutionvideo"></span>
             </div>
             <img :src="frage.solutionimage.download" alt="Erklärungsbild"
                  class="embed-responsive" v-else-if="frage.solutionimage">
@@ -62,14 +62,6 @@
             pruefeUndNaechste() {
                 this.$emit('pruefe');
                 this.$emit('naechste')
-            }
-        },
-        computed: {
-            isLetzte() {
-                if (this.aktuelleFrage === this.anzahlFragen - 1) {
-                    return true;
-                }
-                return false;
             }
         }
     }
