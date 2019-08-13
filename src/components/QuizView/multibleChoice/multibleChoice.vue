@@ -5,7 +5,8 @@
         <Frage :quizfrage="quizfrage"/>
 
         <Countdown
-                @timeover="$emit('timeover')" class="col-2" id="countdown" ref="Countdown"
+                @timeover="$emit('timeover')" class="countdown" id="countdown"
+                ref="Countdown"
                 v-show="started"></Countdown>
 
 
@@ -65,4 +66,8 @@
     /*.card {*/
     /*    margin: 5px;*/
     /*}*/
+
+    .countdown {
+        margin-bottom: 8px;
+    }
 </style>

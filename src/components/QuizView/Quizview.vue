@@ -1,15 +1,13 @@
 <template>
     <div class="container-fluid">
         <div class="row" id="head">
-            <div class="col-10">
 
                 <progressIndicator
                         :anzahlFragen="quiz.quizfragen.length"
                         :progress="loesung.history"
                         :selbsttest="quiz.selbsttest"
-                        class="progressIndicator"
+                        class="progressIndicator col-12"
                 />
-            </div>
 
         </div>
 
@@ -127,10 +125,10 @@
                     this.quiz.quizfragen = res.data.items;
                     this.quiz.title = res.data.title;
                     this.loading = false;
-                });
+                }).catch(err => this.fehler(err));
             },
             getFrage(url) {
-                axios.get(url, this.local.config).then(this.contLoadingFrage).catch(err => console.log(err));
+                axios.get(url, this.local.config).then(this.contLoadingFrage).catch(err => this.fehler(err));
             },
             contLoadingFrage(res) {
                 this.quiz.quizfrage = res.data;
