@@ -7,22 +7,16 @@
 
 <script>
     import Quizview from "@/components/QuizView/Quizview";
-    import Headbar from "@/components/QuizView/Headbar";
 
     export default {
         name: 'app',
         components: {
-            Quizview,
-            Headbar
+            Quizview
         },
 
         data() {
             return {
                 baseURL: "http://192.168.86.52:8080/quiz",
-                auth: {
-                    username: "julian.pollinger@jp-studios.de",
-                    password: "Marcel18192411"
-                },
                 title: "Testlernportal"
             }
         },

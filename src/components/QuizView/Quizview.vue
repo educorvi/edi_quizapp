@@ -125,7 +125,16 @@
                     this.quiz.quizfragen = res.data.items;
                     this.quiz.title = res.data.title;
                     this.loading = false;
+                    this.deleteStuff()
                 }).catch(err => this.fehler(err));
+            },
+            deleteStuff() {
+                for (let i = 0; i < this.quiz.quizfragen.length; i++) {
+                    if (this.quiz.quizfragen[i]["@type"] !== "Aufgabe") {
+                        this.quiz.quizfragen.splice(i, 1);
+                        i--;
+                    }
+                }
             },
             getFrage(url) {
                 axios.get(url, this.local.config).then(this.contLoadingFrage).catch(err => this.fehler(err));
