@@ -1,7 +1,10 @@
 <template>
-    <b-card :border-variant="getCardVariant" @click="$emit('cl', index)">
+    <b-card :border-variant="getCardVariant" @click="$emit('cl', index)" v-if="!antwort.image">
+        {{antwort["antwort"]}}
+    </b-card>
+    <b-card :border-variant="getCardVariant" :img-src="antwort.image.download" @click="$emit('cl', index)" img-left
+            v-else>
         {{antwort.antwort}}
-        <!--            <img v-if="antwort.image" :src-->
     </b-card>
 </template>
 
