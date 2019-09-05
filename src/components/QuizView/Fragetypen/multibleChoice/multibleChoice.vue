@@ -1,7 +1,6 @@
 <template>
     <div>
 
-        <!--        <Countdown :duration="180" @timeover="$emit('timeover')"></Countdown>-->
         <Frage :quizfrage="quizfrage"/>
 
         <Countdown
@@ -26,8 +25,8 @@
 </template>
 
 <script>
-    import Antwort from "@/components/QuizView/multibleChoice/Children/Antwort";
-    import Frage from "@/components/QuizView/multibleChoice/Children/Frage";
+    import Antwort from "@/components/QuizView/Fragetypen/multibleChoice/Children/Antwort";
+    import Frage from "@/components/QuizView/Fragetypen/multibleChoice/Children/Frage";
     import Countdown from "@/components/QuizView/QuizSubIO/CountdownTimer";
 
     export default {

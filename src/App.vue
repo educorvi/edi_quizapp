@@ -1,23 +1,36 @@
 <template>
     <div id="app">
         <!--        <Headbar :title="title"/>-->
-        <Quizview :baseURL="baseURL+'/Members/julian--pollinger/testordner'"></Quizview>
+        <Quizview :baseURL="baseURL"></Quizview>
+        <!--        <Sorting :data="test"></Sorting>-->
     </div>
 </template>
 
 <script>
     import Quizview from "@/components/QuizView/Quizview";
+    import Sorting from "@/components/QuizView/Fragetypen/Sorting/Sorting";
 
     export default {
         name: 'app',
         components: {
+            Sorting,
             Quizview
         },
 
         data() {
             return {
-                baseURL: "http://192.168.86.52:8080/quiz",
-                title: "Testlernportal"
+                baseURL: "https://quiz.educorvi.de/Members/julian--pollinger/testordner",
+                title: "Testlernportal",
+                test: {
+                    labels: [],
+                    drops: [
+                        "Hallo",
+                        "Test",
+                        "Lalala",
+                        "Tralala",
+                        "Damdam"
+                    ]
+                }
             }
         },
 

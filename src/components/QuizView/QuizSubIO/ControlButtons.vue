@@ -13,8 +13,11 @@
             </div>
 
             <div class="row ctlbuttons">
-                <b-button class="col btn-warning" v-b-modal.modal-hinweis>Hinweis</b-button>
-                <b-button class="col btn-danger" v-b-modal.modal-erklaerung v-show="geprueft">Erklärung</b-button>
+                <b-button class="col btn-warning" v-b-modal.modal-hinweis v-if="frage.hinweis">Hinweis</b-button>
+                <b-button class="col btn-danger" v-b-modal.modal-erklaerung
+                          v-if="frage.solutionvideo || frage.solutionimage || frage.erklaerung" v-show="geprueft">
+                    Erklärung
+                </b-button>
             </div>
 
         </div>
@@ -30,7 +33,7 @@
         </div>
 
         <!--        Hinweis-->
-        <b-modal centered id="modal-hinweis" ok-title="Schließen" scrollable title="Hinweis">
+        <b-modal centered id="modal-hinweis" ok-title="Schließen" scrollable title="Hinweis" v-if="frage.hinweis">
             <span v-html="frage.hinweis.data"></span>
             <div class="w-100" slot="modal-footer">
                 <b-button @click="$bvModal.hide('modal-hinweis')" block class="mt-3">Schließen</b-button>
@@ -39,7 +42,8 @@
 
 
         <!--        Erklärung-->
-        <b-modal centered id="modal-erklaerung" ok-title="Schließen" scrollable title="Erklärung">
+        <b-modal centered id="modal-erklaerung" ok-title="Schließen" scrollable title="Erklärung"
+                 v-if="frage.solutionvideo || frage.solutionimage || frage.erklaerung">
             <div class="embed-responsive embed-responsive-16by9" style="margin-bottom: 5px"
                  v-if="frage.solutionvideo">
                 <span v-html="frage.solutionvideo"></span>

@@ -2,34 +2,50 @@
     <div class="container-fluid">
         <div class="row" id="head">
 
-                <progressIndicator
-                        :anzahlFragen="quiz.quizfragen.length"
-                        :progress="loesung.history"
-                        :selbsttest="quiz.selbsttest"
-                        class="progressIndicator col-12"
-                />
+            <progressIndicator
+                    :anzahlFragen="quiz.quizfragen.length"
+                    :progress="loesung.history"
+                    :selbsttest="quiz.selbsttest"
+                    class="progressIndicator col-12"
+            />
 
         </div>
 
 
         <div id="quizbody" v-show="!loading">
-            <multibleChoice :geprueft="geprueft"
-                            :quizfrage="quiz.quizfrage"
-                            :selbsttest="quiz.selbsttest"
-                            :solution="loesung.solution"
-                            :started="started"
-                            @newsel="aktualisiereSelected"
-                            @timeover="pruefe"
-                            id="multibleChoice" ref="multibleChoice" v-show="started && !fertig"/>
+            <!--            Unterschiedliche Fragetypen-->
+            <div v-if="started && !fertig">
+                <multibleChoice
+                        :geprueft="geprueft"
+                        :quizfrage="quiz.quizfrage"
+                        :selbsttest="quiz.selbsttest"
+                        :solution="loesung.solution"
+                        :started="started"
+                        @newsel="aktualisiereSelected"
+                        @timeover="pruefe"
+                        ref="frage"
+                        v-if="quiz.quizfrage.type === 'multible'"/>
 
+                <Sorting
+                        :geprueft="geprueft"
+                        :quizfrage="quiz.quizfrage"
+                        :selbsttest="quiz.selbsttest"
+                        :solution="loesung.solution"
+                        :started="started"
+                        @newsel="aktualisiereSelected"
+                        @timeover="pruefe"
+                        ref="frage"
+                        v-else/>
+
+            </div>
 
             <ControlButtons
                     :aktuelleFrage="aktuelleFrage" :anzahlFragen="quiz.quizfragen.length" :frage="quiz.quizfrage"
                     :geprueft="geprueft"
-                    :selbsttest="quiz.selbsttest" @naechste="naechsteFrage"
+                    :selbsttest="quiz.selbsttest" @fertig="fertig=true"
+                    @naechste="naechsteFrage"
                     @pruefe="pruefe"
                     @vorherige="vorherigeFrage"
-                    @fertig="fertig=true"
                     v-if="started && !fertig"/>
 
 
@@ -55,10 +71,11 @@
 <script>
     /* eslint-disable no-console */
 
-    import multibleChoice from "@/components/QuizView/multibleChoice/multibleChoice";
+    import multibleChoice from "@/components/QuizView/Fragetypen/multibleChoice/multibleChoice";
     import ControlButtons from "@/components/QuizView/QuizSubIO/ControlButtons";
     import axios from "axios"
     import ProgressIndicator from "@/components/QuizView/QuizSubIO/progressIndicator";
+    import Sorting from "@/components/QuizView/Fragetypen/Sorting/Sorting";
 
     export default {
         data() {
@@ -112,6 +129,7 @@
         },
         name: "Quizview",
         components: {
+            Sorting,
             ProgressIndicator,
             "multibleChoice": multibleChoice,
             ControlButtons
@@ -141,9 +159,17 @@
             },
             contLoadingFrage(res) {
                 this.quiz.quizfrage = res.data;
+                switch (this.quiz.quizfrage["antworten"][0]["bewertung"]) {
+                    case "reihe":
+                        this.quiz.quizfrage["type"] = "reihe";
+                        break;
+                    default:
+                        this.quiz.quizfrage["type"] = "multible";
+                }
                 this.geprueft = false;
-                this.$refs.multibleChoice.$refs.Countdown.startCountdown(this.quiz.quizfrage["bedenkzeit"]);
-                this.$refs.multibleChoice.whipe();
+                this.$refs.frage.$refs.Countdown.startCountdown(this.quiz.quizfrage["bedenkzeit"]);
+                this.$refs.frage.whipe();
+                this.quiz.quizfrage.antworten = this.shuffle(this.quiz.quizfrage.antworten);
                 this.loading = false;
             },
             aktualisiereSelected(sel) {
@@ -168,6 +194,9 @@
             },
             pruefe() {
                 let url = Object.entries(this.quiz.quizfragen[this.aktuelleFrage])[0][1] + "/validate-aufgabe-rest";
+                if (this.quiz.quizfrage.type === "reihe") {
+                    this.loesung.selected[this.aktuelleFrage] = this.quiz.quizfrage.antworten;
+                }
                 axios.get(url, {
                     headers: {
                         Accept: "application/json",
@@ -180,7 +209,7 @@
                     this.loesung.history.proFrage[this.aktuelleFrage] = this.loesung.solution.result;
                     this.geprueft = true;
                     this.setRichtigUndFalsch();
-                    this.$refs.multibleChoice.$refs.Countdown.running = false;
+                    this.$refs.frage.$refs.Countdown.running = false;
                 }).catch(err => this.fehler(err));
 
             },
@@ -198,6 +227,10 @@
             },
             fehler(err) {
                 alert("Verbindung fehlgeschlagen\n(" + err + ")")
+            },
+            shuffle(a) {
+                a.sort(() => Math.random() - 0.5);
+                return a;
             }
         },
 
