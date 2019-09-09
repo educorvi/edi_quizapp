@@ -32,6 +32,8 @@
                         :selbsttest="quiz.selbsttest"
                         :solution="loesung.solution"
                         :started="started"
+                        :index="aktuelleFrage"
+                        :proFrage="loesung.history.proFrage"
                         @newsel="aktualisiereSelected"
                         @timeover="pruefe"
                         ref="frage"
@@ -51,7 +53,8 @@
 
             <!--        Startbereich-->
             <div v-if="!started">
-                <h4>{{quiz.title}}</h4>
+                <h6 class="mb-2">Bitte Quiz eingeben</h6>
+                <b-input class="mb-2" type="url" v-model="baseURL"></b-input>
                 <b-button @click="naechsteFrage">Start</b-button>
             </div>
 
@@ -80,6 +83,7 @@
     export default {
         data() {
             return {
+                baseURL: "https://quiz.educorvi.de/Members/julian--pollinger/testordner",
                 loading: true,
                 quiz: {
                     title: "",
@@ -219,7 +223,7 @@
                 for (let i = 0; i < this.loesung.history.proFrage.length; i++) {
                     let loe = this.loesung.history.proFrage[i];
                     if (loe) {
-                        this.loesung.history.richtig++
+                        this.loesung.history.richtig++;
                     } else {
                         this.loesung.history.falsch++;
                     }
@@ -240,7 +244,6 @@
             // this.getFragen("http://192.168.86.48:8080/quiz/Members/julian--pollinger/testordner/");
         },
         props: {
-            baseURL: String
         }
     }
 </script>
