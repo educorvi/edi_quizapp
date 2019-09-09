@@ -1,9 +1,5 @@
 <template>
     <div v-if="!infinite">
-        <!--        <div id="parent">-->
-        <!--            <p :class="getTextClass" v-if="!infinite"><strong>{{countDown}}s</strong></p>-->
-        <!--            <p v-else>&infin;</p>-->
-        <!--        </div>-->
         <b-progress :max="timeTotal" height="10px">
             <b-progress-bar :value="countDown" variant="warning"></b-progress-bar>
         </b-progress>
@@ -47,24 +43,9 @@
                     this.countDownTimer();
                 }
             }
-        },
-        computed: {
-            getTextClass() {
-                if (this.countDown <= 10) {
-                    return "redText";
-                }
-                return "blackText"
-            }
         }
     }
 </script>
 
 <style scoped>
-    .blackText {
-        color: black;
-    }
-
-    .redText {
-        color: red;
-    }
 </style>

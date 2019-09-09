@@ -177,7 +177,6 @@
                             this.quiz.quizfrage["type"] = "multible";
                     }
                     this.geprueft = false;
-                    this.$refs.frage.$refs.Countdown.startCountdown(this.quiz.quizfrage["bedenkzeit"]);
                     this.$refs.frage.whipe();
                     if (this.quiz.quizfrage.type === "reihe") {
                         this.quiz.quizfrage.antworten = this.shuffle(this.quiz.quizfrage.antworten);
@@ -225,20 +224,6 @@
                     this.geprueft = true;
                     this.setRichtigUndFalsch();
                 }).catch(err => this.fehler(err));
-                // axios.get(url, {
-                //     headers: {
-                //         Accept: "application/json",
-                //     },
-                //     params: {
-                //         data: this.loesung.selected[this.aktuelleFrage]
-                //     }
-                // }).then(res => {
-                //     this.loesung.solution = res.data;
-                //     console.log(res.data);
-                //     this.loesung.history.proFrage[this.aktuelleFrage] = this.loesung.solution.result;
-                //     this.geprueft = true;
-                //     this.setRichtigUndFalsch();
-                // }).catch(err => this.fehler(err));
 
             },
             setRichtigUndFalsch() {

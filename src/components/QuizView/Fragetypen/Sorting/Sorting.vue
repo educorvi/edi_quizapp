@@ -58,6 +58,9 @@
                 }
             }
         },
+        mounted() {
+            this.$refs.Countdown.startCountdown(this.quizfrage["bedenkzeit"]);
+        }
     }
 </script>
 

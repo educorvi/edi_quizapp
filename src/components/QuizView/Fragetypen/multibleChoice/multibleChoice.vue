@@ -5,8 +5,7 @@
 
         <Countdown
                 @timeover="$emit('timeover')" class="countdown" id="countdown"
-                ref="Countdown"
-                v-show="started"></Countdown>
+                ref="Countdown"></Countdown>
 
 
         <b-card-group deck>
@@ -56,6 +55,9 @@
                     this.$emit('newsel', this.selected)
                 }
             }
+        },
+        mounted() {
+            this.$refs.Countdown.startCountdown(this.quizfrage["bedenkzeit"]);
         }
 
     }
