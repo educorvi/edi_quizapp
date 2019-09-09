@@ -58,6 +58,17 @@
         },
         mounted() {
             this.$refs.Countdown.startCountdown(this.quizfrage["bedenkzeit"]);
+        },
+        computed: {
+            bedenk() {
+                return this.quizfrage["bedenkzeit"];
+            }
+        },
+        watch: {
+            bedenk: function (newValue, oldValue) {
+                if (newValue !== undefined)
+                    this.$refs.Countdown.startCountdown(this.quizfrage["bedenkzeit"]);
+            }
         }
 
     }

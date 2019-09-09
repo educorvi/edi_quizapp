@@ -56,11 +56,20 @@
                 } else {
                     return null;
                 }
+            },
+            bedenk() {
+                return this.quizfrage['bedenkzeit'];
+            }
+        },
+        watch: {
+            bedenk: function (newValue, oldValue) {
+                if (newValue !== undefined)
+                    this.$refs.Countdown.startCountdown(this.quizfrage["bedenkzeit"]);
             }
         },
         mounted() {
             this.$refs.Countdown.startCountdown(this.quizfrage["bedenkzeit"]);
-        }
+        },
     }
 </script>
 
