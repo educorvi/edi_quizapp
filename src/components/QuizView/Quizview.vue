@@ -8,6 +8,7 @@
                     :progress="loesung.history"
                     :selbsttest="quiz.selbsttest"
                     :started="started"
+                    v-if="started && !fertig"
                     class="progressIndicator col-12"
             />
 
