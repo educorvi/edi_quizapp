@@ -63,8 +63,10 @@
 
             <!--            Endbereich-->
             <div v-if="fertig">
-                <h3>Fertig</h3>
-                <p>{{loesung.history.richtig}} richtig, {{loesung.history.falsch}} falsch</p>
+                <Auswertung :baseURL="baseURL" :proFrage="loesung.history.proFrage"
+                            :selected="loesung.selected"></Auswertung>
+                <!--                <h3>Fertig</h3>-->
+                <!--                <p>{{loesung.history.richtig}} richtig, {{loesung.history.falsch}} falsch</p>-->
             </div>
         </div>
 
@@ -83,6 +85,7 @@
     import axios from "axios"
     import ProgressIndicator from "@/components/QuizView/QuizSubIO/progressIndicator";
     import Sorting from "@/components/QuizView/Fragetypen/Sorting/Sorting";
+    import Auswertung from "@/components/QuizView/Auswertung/Auswertung";
 
     export default {
         data() {
@@ -138,6 +141,7 @@
         },
         name: "Quizview",
         components: {
+            Auswertung,
             Sorting,
             ProgressIndicator,
             "multibleChoice": multibleChoice,
