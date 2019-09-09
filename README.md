@@ -1,4 +1,4 @@
-# educorvi
+# edi quizapp
 
 ## Project setup
 ```
