@@ -3,9 +3,11 @@
         <div class="row" id="head">
 
             <progressIndicator
+                    :aktuelleFrage="aktuelleFrage"
                     :anzahlFragen="quiz.quizfragen.length"
                     :progress="loesung.history"
                     :selbsttest="quiz.selbsttest"
+                    :started="started"
                     class="progressIndicator col-12"
             />
 
@@ -14,7 +16,7 @@
 
         <div id="quizbody" v-show="!loading">
             <!--            Unterschiedliche Fragetypen-->
-            <div v-if="started && !fertig">
+            <div v-show="started && !fertig">
                 <multibleChoice
                         :geprueft="geprueft"
                         :quizfrage="quiz.quizfrage"
@@ -28,12 +30,12 @@
 
                 <Sorting
                         :geprueft="geprueft"
+                        :index="aktuelleFrage"
+                        :proFrage="loesung.history.proFrage"
                         :quizfrage="quiz.quizfrage"
                         :selbsttest="quiz.selbsttest"
                         :solution="loesung.solution"
                         :started="started"
-                        :index="aktuelleFrage"
-                        :proFrage="loesung.history.proFrage"
                         @newsel="aktualisiereSelected"
                         @timeover="pruefe"
                         ref="frage"
@@ -55,7 +57,7 @@
             <div v-if="!started">
                 <h6 class="mb-2">Bitte Quiz eingeben</h6>
                 <b-input class="mb-2" type="url" v-model="baseURL"></b-input>
-                <b-button @click="naechsteFrage">Start</b-button>
+                <b-button @click="start">Start</b-button>
             </div>
 
             <!--            Endbereich-->
@@ -83,8 +85,9 @@
     export default {
         data() {
             return {
+                // baseURL: "http://192.168.86.52:8080/quiz/Members/julian--pollinger/testordner",
                 baseURL: "https://quiz.educorvi.de/Members/julian--pollinger/testordner",
-                loading: true,
+                loading: false,
                 quiz: {
                     title: "",
                     //aktuelle frage
@@ -113,7 +116,7 @@
                     solution: {}
                 },
 
-                aktuelleFrage: 0,
+                aktuelleFrage: -1,
 
                 started: false,
                 fertig: false,
@@ -141,13 +144,17 @@
 
 
         methods: {
+            start() {
+                this.getQuizData(this.baseURL);
+            },
             getQuizData(url) {
                 this.loading = true;
                 axios.get(url, this.local.config).then(res => {
                     this.quiz.quizfragen = res.data.items;
                     this.quiz.title = res.data.title;
                     this.loading = false;
-                    this.deleteStuff()
+                    this.deleteStuff();
+                    this.naechsteFrage()
                 }).catch(err => this.fehler(err));
             },
             deleteStuff() {
@@ -159,62 +166,78 @@
                 }
             },
             getFrage(url) {
-                axios.get(url, this.local.config).then(this.contLoadingFrage).catch(err => this.fehler(err));
-            },
-            contLoadingFrage(res) {
-                this.quiz.quizfrage = res.data;
-                switch (this.quiz.quizfrage["antworten"][0]["bewertung"]) {
-                    case "reihe":
-                        this.quiz.quizfrage["type"] = "reihe";
-                        break;
-                    default:
-                        this.quiz.quizfrage["type"] = "multible";
-                }
-                this.geprueft = false;
-                this.$refs.frage.$refs.Countdown.startCountdown(this.quiz.quizfrage["bedenkzeit"]);
-                this.$refs.frage.whipe();
-                this.quiz.quizfrage.antworten = this.shuffle(this.quiz.quizfrage.antworten);
-                this.loading = false;
+                axios.get(url, this.local.config).then(res => {
+                    this.quiz.quizfrage = res.data;
+                    switch (this.quiz.quizfrage["antworten"][0]["bewertung"]) {
+                        case "reihe":
+                            this.quiz.quizfrage["type"] = "reihe";
+                            break;
+                        default:
+                            this.quiz.quizfrage["type"] = "multible";
+                    }
+                    this.geprueft = false;
+                    this.$refs.frage.$refs.Countdown.startCountdown(this.quiz.quizfrage["bedenkzeit"]);
+                    this.$refs.frage.whipe();
+                    if (this.quiz.quizfrage.type === "reihe") {
+                        this.quiz.quizfrage.antworten = this.shuffle(this.quiz.quizfrage.antworten);
+                    }
+                    this.loading = false;
+                }).catch(err => this.fehler(err));
             },
             aktualisiereSelected(sel) {
                 this.loesung.selected[this.aktuelleFrage] = sel;
             },
             naechsteFrage() {
                 this.loading = true;
-                if (this.started) {
-                    this.aktuelleFrage++;
-                } else {
+                this.aktuelleFrage++;
+                if (!this.started) {
                     this.started = true;
                 }
-                if (this.loesung.selected[this.aktuelleFrage] === undefined) {
-                    this.loesung.selected[this.aktuelleFrage] = [];
-                }
-                this.getFrage(Object.entries(this.quiz.quizfragen[this.aktuelleFrage])[0][1]);
+                this.loesung.selected[this.aktuelleFrage] = [];
+
+                this.getFrage(this.quiz.quizfragen[this.aktuelleFrage]["@id"]);
             },
             vorherigeFrage() {
                 this.loading = true;
                 this.aktuelleFrage--;
-                this.getFrage(Object.entries(this.quiz.quizfragen[this.aktuelleFrage])[0][1]);
+                this.loesung.selected[this.aktuelleFrage] = [];
+                this.getFrage(this.quiz.quizfragen[this.aktuelleFrage]["@id"]);
             },
             pruefe() {
-                let url = Object.entries(this.quiz.quizfragen[this.aktuelleFrage])[0][1] + "/validate-aufgabe-rest";
+                let url = this.quiz.quizfragen[this.aktuelleFrage]["@id"] + "/validate-aufgabe-rest";
+                this.$refs.frage.$refs.Countdown.running = false;
                 if (this.quiz.quizfrage.type === "reihe") {
                     this.loesung.selected[this.aktuelleFrage] = this.quiz.quizfrage.antworten;
                 }
-                axios.get(url, {
-                    headers: {
-                        Accept: "application/json",
-                    },
-                    params: {
-                        data: JSON.stringify(this.loesung.selected[this.aktuelleFrage])
-                    }
-                }).then(res => {
+
+
+                const axiosOptions = {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    data: this.loesung.selected[this.aktuelleFrage],
+                    url: url
+                };
+                axios(axiosOptions).then(res => {
                     this.loesung.solution = res.data;
+                    console.log(res.data);
                     this.loesung.history.proFrage[this.aktuelleFrage] = this.loesung.solution.result;
                     this.geprueft = true;
                     this.setRichtigUndFalsch();
-                    this.$refs.frage.$refs.Countdown.running = false;
                 }).catch(err => this.fehler(err));
+                // axios.get(url, {
+                //     headers: {
+                //         Accept: "application/json",
+                //     },
+                //     params: {
+                //         data: this.loesung.selected[this.aktuelleFrage]
+                //     }
+                // }).then(res => {
+                //     this.loesung.solution = res.data;
+                //     console.log(res.data);
+                //     this.loesung.history.proFrage[this.aktuelleFrage] = this.loesung.solution.result;
+                //     this.geprueft = true;
+                //     this.setRichtigUndFalsch();
+                // }).catch(err => this.fehler(err));
 
             },
             setRichtigUndFalsch() {
@@ -238,13 +261,7 @@
             }
         },
 
-        created() {
-            this.getQuizData(this.baseURL);
-            // this.getFrage(this.quizfrag);
-            // this.getFragen("http://192.168.86.48:8080/quiz/Members/julian--pollinger/testordner/");
-        },
-        props: {
-        }
+        props: {}
     }
 </script>
 

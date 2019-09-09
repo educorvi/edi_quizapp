@@ -24,6 +24,7 @@
         },
         methods: {
             countDownTimer() {
+                console.log("Countdown: " + this.countDown + ", Infinite: " + this.infinite);
                 if (this.countDown > 0 && this.running) {
                     setTimeout(() => {
                         this.countDown -= 0.1;

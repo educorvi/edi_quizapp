@@ -11,7 +11,8 @@
         <b-card-group deck>
             <draggable :disabled="geprueft" class="w-100" en ghost-class="ghost" v-model="quizfrage.antworten">
                 <!--                <transition-group name="flip-list" type="transition">-->
-                <b-card :key="element.antwort" class="m-2" v-for="element in quizfrage.antworten">
+                <b-card :border-variant="borderVariant" :key="element.antwort" class="m-2"
+                        v-for="element in quizfrage.antworten">
                     {{element.antwort}}
                 </b-card>
                 <!--                </transition-group>-->
@@ -43,21 +44,20 @@
         methods: {
             whipe() {
             }
-        }
-        // mounted() {
-        //     let array = [];
-        //     for (let i = 0; i < this.quizfrage.antworten.length; i++) {
-        //         array[i] = this.quizfrage.antworten[i];
-        //     }
-        //     for (let i = array.length - 1; i > 0; i--) {
-        //         let j = Math.floor(Math.random() * (i + 1));
-        //         let temp = array[i];
-        //         array[i] = array[j];
-        //         array[j] = temp;
-        //     }
-        //     this.data.drops = array;
-        //
-        // }
+        },
+        computed: {
+            borderVariant() {
+                if (this.geprueft) {
+                    if (this.solution.result) {
+                        return "success";
+                    } else {
+                        return "danger";
+                    }
+                } else {
+                    return null;
+                }
+            }
+        },
     }
 </script>
 
