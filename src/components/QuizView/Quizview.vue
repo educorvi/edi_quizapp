@@ -64,6 +64,7 @@
             <!--            Endbereich-->
             <div v-if="fertig">
                 <h3>Fertig</h3>
+                <p>{{loesung.history.richtig}} richtig, {{loesung.history.falsch}} falsch</p>
             </div>
         </div>
 
