@@ -40,7 +40,7 @@
                     <!--                    Multible Choice-->
                     <div :key="antwort.antwort+'_'+index" v-else v-for="(antwort, index) in frage.antworten">
                         <b-checkbox :checked="selected.includes(index)" :state="getCheckboxState(index)" disabled>
-                            {{antwort.antwort}}
+                            <p :style="'color: '+getStyle(index)" class="m-0">{{antwort.antwort}}</p>
                         </b-checkbox>
                     </div>
 
@@ -88,6 +88,18 @@
                     return false;
                 }
 
+                return null;
+            },
+            getStyle(index) {
+                if (this.frage.antworten[index].bewertung === "richtig" && this.selected.includes(index)) {
+                    return "green";
+                }
+                if (this.frage.antworten[index].bewertung === "richtig" && !this.selected.includes(index)) {
+                    return "red";
+                }
+                if (this.frage.antworten[index].bewertung === "falsch" && this.selected.includes(index)) {
+                    return "red";
+                }
                 return null;
             }
         }
