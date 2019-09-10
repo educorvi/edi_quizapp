@@ -3,7 +3,7 @@
         <b-card no-body v-b-toggle="'collapse_'+frage['@id']">
             <b-card-header :header-text-variant="variant">{{frage.title}}</b-card-header>
             <b-collapse :id="'collapse_'+frage['@id']">
-                <b-card-body>
+                <b-card-body class="text-left">
 
                     <!--                    Reihe-->
                     <div v-if="!richtig && frage.antworten[0].bewertung === 'reihe'">
