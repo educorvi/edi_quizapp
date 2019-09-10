@@ -63,10 +63,12 @@
 
             <!--            Endbereich-->
             <div v-if="fertig">
-                <Auswertung :baseURL="baseURL" :proFrage="loesung.history.proFrage"
-                            :selected="loesung.selected"></Auswertung>
-                <!--                <h3>Fertig</h3>-->
-                <!--                <p>{{loesung.history.richtig}} richtig, {{loesung.history.falsch}} falsch</p>-->
+                <Auswertung :baseURL="baseURL"
+                            :false="loesung.history.falsch"
+                            :proFrage="loesung.history.proFrage"
+                            :richtig="loesung.history.richtig"
+                            :selected="loesung.selected"
+                ></Auswertung>
             </div>
         </div>
 

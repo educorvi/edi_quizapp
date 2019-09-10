@@ -6,24 +6,35 @@
                 <b-card-body>
 
                     <!--                    Reihe-->
-                    <b-row v-if="frage.antworten[0].bewertung === 'reihe'">
-                        <b-col class="border-right border-dark">
-                            <div class="border-bottom border-dark">Ihre Wahl</div>
+                    <div v-if="!richtig && frage.antworten[0].bewertung === 'reihe'">
+                        <b-row>
+                            <b-col class="border-right border-dark">
+                                <div class="border-bottom border-dark">Ihre Wahl</div>
 
-                            <div>
-                                <p :key="antwort.antwort+'_f'+index" v-for="(antwort, index) in selected">{{index+1}}:
-                                    {{antwort.antwort}}</p>
-                            </div>
-                        </b-col>
-                        <b-col class="border-left border-dark">
-                            <div class="border-bottom border-dark">Richtige Lösung</div>
-                            <div>
-                                <p :key="antwort.antwort+'_r'+index" v-for="(antwort, index) in frage.antworten">
-                                    {{index+1}}:
-                                    {{antwort.antwort}}</p>
-                            </div>
-                        </b-col>
-                    </b-row>
+                                <div>
+                                    <p :key="antwort.antwort+'_f'+index" v-for="(antwort, index) in selected">
+                                        {{index+1}}:
+                                        {{antwort.antwort}}</p>
+                                </div>
+                            </b-col>
+                            <b-col class="border-left border-dark">
+                                <div class="border-bottom border-dark">Richtige Lösung</div>
+                                <div>
+                                    <p :key="antwort.antwort+'_r'+index" v-for="(antwort, index) in frage.antworten">
+                                        {{index+1}}:
+                                        {{antwort.antwort}}</p>
+                                </div>
+                            </b-col>
+                        </b-row>
+                    </div>
+                    <div v-else-if="richtig && frage.antworten[0].bewertung === 'reihe'">
+                        <h6>Lösung</h6>
+                        <div>
+                            <p :key="antwort.antwort+'_r'+index" v-for="(antwort, index) in frage.antworten">
+                                {{index+1}}:
+                                {{antwort.antwort}}</p>
+                        </div>
+                    </div>
 
 
                     <!--                    Multible Choice-->
